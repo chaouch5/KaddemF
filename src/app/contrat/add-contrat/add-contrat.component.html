@@ -1,0 +1,75 @@
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <!-- left column -->
+        <div class="col-md-11 container">
+          <!-- general form elements -->
+          <div  class="card card-primary">
+            {{ContratData|json}}
+            <div style="background-color:#3498db;" class="card-header">
+              <h3 class="card-title">Quick Example</h3>
+            </div>
+          
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form (ngSubmit)="addContrat()">
+              <div class="card-body">
+                <div class="form-group">
+                  <label>dateDebutContrat</label>
+                  <input [(ngModel)] = "ContratData.dateDebutContrat" type="date" class="form-control" ngbDatePicker="#dd"  name="dateDebutContrat" 
+                  required
+                  #date = "ngModel"
+                  [ngClass]="{'is-invalid' : date.touched && !date.valid}">
+                  <div class="invalid-feedback">
+                    <span *ngIf="date.errors">
+                      Entrer une Date
+                    </span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>dateFinContrat</label>
+                  <input name="dateFinContrat" [(ngModel)] = "ContratData.dateFinContrat"  type="date" class="form-control"  placeholder="dateFinContrat">
+                </div>
+
+
+                <label>specialite</label>
+                <select name="specialite" class="form-select" aria-label="Default select example" [(ngModel)] = "ContratData.specialite" >
+                    
+                    <option value="IA">IA</option>
+                    <option value="RESEAU">RESEAU</option>
+                    <option value="CLOUD">CLOUD</option>
+                    <option value="SECURITE">SECURITE</option>
+                  </select>
+
+
+
+
+                  <label>Etudiants</label>
+                  <select name="departement"  class="form-select" aria-label="Default select example" [(ngModel)] = "ContratData.etudiant.id" >
+                      
+                    <option *ngFor="let e of etudiants" [value]="e.id">{{e.nom}} {{e.prenom}}</option>
+                    </select>
+                 
+
+
+
+
+               <!-- <select class="form-select" aria-label="Default select example">
+                    <option selected>Département</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </select>-->
+              </div>
+              <!-- /.card-body -->
+             
+              <div class="card-footer">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                
+              </div>
+            </form>
+          </div>
+
+
+        

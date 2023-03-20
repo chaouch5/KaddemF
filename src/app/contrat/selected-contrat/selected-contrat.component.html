@@ -1,0 +1,8 @@
+<div *ngIf="contrat.id" class="contrat">
+    <h3>datedebut: <strong>{{contrat.dateDebutContrat}} </strong></h3>
+    <h3>specialite: <strong [ngStyle]="{color: contrat.specialite=='EXPERT' ? '#71BC75': contrat.specialite=='IA' ? 'tomato' : '#550F00' }">{{contrat.specialite}} </strong></h3>
+
+        <h4>datefin : {{contrat.dateFinContrat}}</h4>
+      
+    
+</div>

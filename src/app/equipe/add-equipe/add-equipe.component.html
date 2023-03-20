@@ -1,0 +1,62 @@
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <!-- left column -->
+      <div class="col-md-11 container">
+        <!-- general form elements -->
+        <div class="card card-primary">
+          {{equipe|json}}
+          <div style="background-color:#3498db;" class="card-header">
+            <h3 class="card-title">Quick Example</h3>
+          </div>
+
+          <form [formGroup]="myForm" (ngSubmit)="addEquipe()">
+            <div class="card-body">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Nom Equipe</label>
+                <input [(ngModel)]="equipe.nomEquipe" name="nomEquipe" formControlName="nomEquipe" type="text"
+                  class="form-control" placeholder="Nom">
+              </div>
+              <div
+                *ngIf="myForm.get('nomEquipe').invalid && myForm.get('nomEquipe').touched || myForm.get('nomEquipe').invalid && !nom_validated">
+                <div *ngIf="myForm.get('nomEquipe').errors['required']" class="alert alert-danger" role="alert">
+                  Nom d'equipe est Obligatoire !
+                </div>
+                <div *ngIf="nomE.errors?.['minlength']" class="alert alert-danger" role="alert">
+                  Nom d'equipe doit être au minimum 4 charactères
+                </div>
+                <!--<div *ngIf="myControls['firstName'].hasError('pattern')" class="alert alert-danger" role="alert">
+                                tous des lettres
+                             </div> -->
+              </div>
+
+
+              <label>Niveau</label>
+              <select name="niveau" class="form-select" aria-label="Default select example" formControlName="niveau"
+                [(ngModel)]="equipe.niveau">
+
+                <option value="JUNIOR">JUNIOR</option>
+                <option value="SENIOR">SENIOR</option>
+                <option value="EXPERT">EXPERT</option>
+              </select>
+              <div
+                *ngIf="myForm.get('niveau').invalid && myForm.get('niveau').touched || myForm.get('niveau').invalid && !niveau_validated">
+                <div *ngIf="myForm.get('niveau').errors['required']" class="alert alert-danger" role="alert">
+                  Niveau est Obligatoire !
+                </div>
+              </div>
+            </div>
+            <!-- /.card-body -->
+
+            <div class="card-footer">
+              <button type="submit" class="btn btn-primary">Submit</button>
+
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

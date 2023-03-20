@@ -1,0 +1,45 @@
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <!-- left column -->
+        <div class="col-md-11 container">
+          <!-- general form elements -->
+          <div  class="card card-primary">
+            {{cntr|json}}
+            <div style="background-color:#3498db;" class="card-header">
+              <h3 class="card-title">Quick Example</h3>
+            </div>
+          
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form #f="ngForm" *ngIf="cntr" (submit)="updateData(f.value)">
+              <div class="card-body">
+                <div class="form-group">
+                  <label  for="exampleInputEmail1">dateD</label>
+                  <input [(ngModel)] = "cntr.dateDebutContrat" name="dateDebutContrat" type="text" class="form-control"  placeholder="dateDebutContrat">
+                </div>
+                <div class="form-group">
+                  <label>dateFinContrat</label>
+                  <input name="dateFinContrat" [(ngModel)] = "cntr.dateFinContrat"  type="text" class="form-control"  placeholder="dateFinContrat">
+                </div>
+
+
+                <label>Options</label>
+                <select name="specialite" class="form-select" aria-label="Default select example" [(ngModel)] = "cntr.specialite" >
+                    
+                    <option value="IA">IA</option>
+                    <option value="RESEAU">RESEAU</option>
+                    <option value="CLOUD">CLOUD</option>
+                    <option value="SECURITE">SECURITE</option>
+                  </select>
+              </div>             
+              <div class="card-footer">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                
+              </div>
+            </form>
+          </div>
+
+
+        

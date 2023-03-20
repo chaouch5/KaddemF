@@ -1,0 +1,55 @@
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <!-- left column -->
+      <div class="col-md-11 container">
+        <!-- general form elements -->
+        <div  class="card card-primary">
+          {{etudiantData|json}}
+          <div style="background-color:#3498db;" class="card-header">
+            <h3 class="card-title">Etudiant Equipe Contrat</h3>
+          </div>
+
+          <!-- /.card-header -->
+          <!-- form start -->
+          <form (ngSubmit)="addEtudiantToEquipe()">
+            <div class="card-body">
+              <div class="form-group">
+                <label  for="exampleInputEmail1">Nom</label>
+                <input [(ngModel)] = "etudiantData.nom" name="nom" type="text" class="form-control"  placeholder="Nom">
+              </div>
+              <div class="form-group">
+                <label>Prénom</label>
+                <input name="prenom" [(ngModel)] = "etudiantData.prenom"  type="text" class="form-control"  placeholder="Prénom">
+              </div>
+
+
+              <label>Options</label>
+              <select name="departement" class="form-select" aria-label="Default select example" [(ngModel)] = "etudiantData.opt" >
+
+                <option value="1">NIDS</option>
+                <option value="2">GAMIX</option>
+                <option value="3">SE</option>
+                <option value="4">SIM</option>
+              </select>
+
+
+
+              <!-- <select class="form-select" aria-label="Default select example">
+                   <option selected>Département</option>
+                   <option value="1">One</option>
+                   <option value="2">Two</option>
+                   <option value="3">Three</option>
+                 </select>-->
+            </div>
+            <!-- /.card-body -->
+
+            <div class="card-footer">
+              <button type="submit" class="btn btn-primary">Submit</button>
+
+            </div>
+          </form>
+        </div>
+
+

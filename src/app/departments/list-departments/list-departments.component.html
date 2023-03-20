@@ -1,0 +1,67 @@
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-11 container">
+            <div class="card">
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="example2" class="table table-bordered table-hover">
+                  <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Nom department</th>
+                    <th>Actions</th>
+                  </tr>
+                  </thead>
+                  <tbody *ngFor ="let d of departments">
+                  <tr>
+                    <td>{{d.id}}</td>
+                    <td>{{d.nomDepartment}}</td>                   
+                    <td class="col-4">
+                      <button class="btn btn-danger" (click)="deleteDepartment(d.id)">Supprimer</button>&nbsp;
+                      <button class="btn btn-warning" [routerLink]="'/dashboard/update-department/'+d.id" >Modifier</button>&nbsp;
+                      <button class="btn btn-info" data-bs-toggle="modal"  data-bs-target="#exampleModal" (click)="details(d)">Voir plus</button>
+
+                    </td>
+                
+                  </tr>
+
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+            <a routerLink="/dashboard/add-department" class="btn btn-primary">ajouter department</a>
+
+
+
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Détails</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                 
+                    
+
+                    <div class="card" style="width: 18rem;">
+                      <div class="card-header">
+                      <p style="font-weight: bold;"> departement n° {{departmentData.id}}</p>
+                      </div>
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Nom department : {{departmentData.nomDepartment}}</li>
+                      
+                        <!--li class="list-group-item">{{etudiantData.departement}}</li-->
+
+                      </ul>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>

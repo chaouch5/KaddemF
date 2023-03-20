@@ -1,0 +1,83 @@
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-11 container">
+                <div class="card">
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="example2" class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Nom Equipe</th>
+                                    <th>Niveau</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let e of equipes">
+                                    <td>
+                                        {{e.nomEquipe}}
+                                    </td>
+                                    <td>
+                                        {{e.niveau}}
+                                    </td>
+                                    <td class="col-4">
+                                        <button class="btn btn-danger"
+                                            (click)="deleteEquipe(e.id)">Supprimer</button>&nbsp;
+                                        <button class="btn btn-warning"
+                                            [routerLink]="'/dashboard/update-equipe/'+e.id">Modifier</button>&nbsp;
+                                        <button class="btn btn-info" data-bs-toggle="modal"
+                                            data-bs-target="#exampleModal" (click)="details(e)">Voir plus</button>&nbsp;
+
+                                            <button type="button" class="btn btn-secondary">Detail</button>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <a routerLink="/dashboard/add-equipe" class="btn btn-primary">ajouter equipe</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Détails</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+
+
+                <div class="card" style="width: 18rem;">
+                    <div class="card-header">
+                        <p style="font-weight: bold;"> Equipe n° {{eq.id}}:</p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Nom d'equipe : {{eq.nomEquipe}}</li>
+                        <li class="list-group-item">Option : {{eq.niveau}}</li>
+
+                        <!--li class="list-group-item">{{etudiantData.departement}}</li-->
+
+                    </ul>
+                    <ul class="list-group list-group-flush" *ngIf="eq.detailEquipe != null">
+                        <div class="card-header">
+                            <p style="font-weight: bold;"> Details:</p>
+                        </div>
+                        <li class="list-group-item">Nombre des salles : {{eq.detailEquipe.salle}}</li>
+                        <li class="list-group-item">thématique : {{eq.detailEquipe.thematique}}</li>
+
+                        <!--li class="list-group-item">{{etudiantData.departement}}</li-->
+
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

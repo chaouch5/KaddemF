@@ -1,0 +1,84 @@
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-11 container">
+
+             <app-search (searchTextChanged)="onSearchTextChanged($event)"></app-search>
+
+              <div class="card">
+                <!-- /.card-header -->
+                <div class="card-body">
+                  <table id="example2" class="table table-bordered table-hover" >
+                    <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Nom</th>
+                      <th>Prénom</th>
+                      <th>Option</th>
+                      <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody *ngFor ="let e of etudiants | paginate : {itemsPerPage:10,
+                       currentPage:page,
+                       totalItems:totalLength  
+                      }" 
+                     >
+                    <tr  *ngIf="searchText === '' || e.nom.toLowerCase().includes(searchText) || e.prenom.toLowerCase().includes(searchText)">
+                      <td>{{e.id}}</td>
+                      <td>{{e.nom}}</td>
+                      <td>{{e.prenom}}</td>
+                      <td> {{e.opt}}</td>
+                     
+                      <td class="col-4">
+                        <button class="btn btn-danger" (click)="deleteEtudiant(e.id)">Supprimer</button>&nbsp;
+                        <button class="btn btn-warning" [routerLink]="'/dashboard/update-etudiant/'+e.id" >Modifier</button>&nbsp;
+                        <button class="btn btn-info" data-bs-toggle="modal"  data-bs-target="#exampleModal" (click)="details(e)">Voir plus</button>
+
+                      </td>
+                  
+                    </tr>
+
+                    </tbody>
+                  </table>
+                </div>
+                <!-- /.card-body -->
+                
+              </div>
+              <!-- /.card -->
+
+              <pagination-controls (pageChange)="page = $event"></pagination-controls>
+
+              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="exampleModalLabel">Détails</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                   
+                      
+
+                      <div class="card" style="width: 18rem;">
+                        <div class="card-header">
+                        <p style="font-weight: bold;"> Etudiant n° {{etudiantData.id}}</p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                          <li class="list-group-item">Nom : {{etudiantData.nom}}</li>
+                          <li class="list-group-item">Prénom : {{etudiantData.prenom}}</li>
+                          <li class="list-group-item">Option : {{etudiantData.opt}}</li>
+                          <li class="list-group-item">Département : {{etudiantData.departement.nomDepartment}}</li>
+
+                          <!--li class="list-group-item">{{etudiantData.departement}}</li-->
+
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+             
+              
+              </div>
